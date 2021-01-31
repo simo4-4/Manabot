@@ -1,0 +1,45 @@
+
+
+{"intents": [
+    {"tag" : "greetings",
+    "patterns" : ["hello", "hey", "hi", "good day", "greetings", "what's up", "how is it going?","good morning", "good afternoon"],
+    "responses": ["Hello!", "Hey!", "What can I do for you?"]
+    },
+    {"tag" : "goodbye",
+        "patterns" : ["bye", "goodbye", "gotta go", "I want to go", "I am leaving"],
+        "responses": ["Bye!", "Goodbye!", "See you later!"]
+    },
+    {"tag": "thanks",
+        "patterns": ["Thanks", "Thank you", "That's helpful"],
+        "responses": ["Happy to help!", "Any time!", "My pleasure"]
+    },
+    {"tag": "affirmative",
+        "patterns": ["yes", "Yup", "done", "aha", "yuppo", "Yup i am", "yes actually"],
+        "responses": ["Great!", "Amazing!", "Good Stuff"]
+    },
+    {"tag": "negative",
+        "patterns": ["nope", "no", "naaa", "na", "not really", "i dont think so", "no actually"],
+        "responses": ["It's okay!", "No worries!", "Take your time"]
+    },
+    {"tag": "howareyou",
+        "patterns": ["how are you", "how is your day going", "how are you feeling"],
+        "responses": ["Everthing's great!", "I'm doing good!", "Great!"]
+    },
+    {"tag": "wrong_answer",
+        "patterns": ["That was not normal", "That sounds like a robot", "That was a bad answer","That was a wrong answer"],
+        "responses": ["What could I have said instead?", "What should I say instead?"]
+    },
+    {"tag": "mentalhealth",
+        "patterns": ["I feel sad", "I feel like I suck", "I'm sad","I'm depressed","I want to die"],
+        "responses": ["I'm here for you", "Let me help you", "Let me cheer you up"]
+    },
+    {"tag": "noanswer",
+        "patterns": [""],
+        "responses": ["Sorry, can't understand you", "Please give me more info", "Not sure I understand"]
+    },
+    {"tag": "goals",
+        "patterns": ["What are my goals for today", "What should I do", "What do I have to do","Do I have anything to do", "How much work do I have"],
+        "responses": ["Let me see!", "Give me a sec!"]
+    }
+
+]}
