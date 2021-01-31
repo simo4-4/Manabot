@@ -1,4 +1,4 @@
-
+#inspired by Neuralline Chat Bot
 
 import random
 import json
