@@ -35,4 +35,4 @@ Go to the folder where chatbot.py is saved on the command line
 then enter "python chatbot.py"
 Make sure you have flask installed !
 
-
+![alt-text](ezgif.com-video-to-gif-7.gif)
