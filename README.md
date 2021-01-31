@@ -28,3 +28,11 @@ Learned to use flask, socketio and tensor flow
 
 ## What's next for ManaBot 
 More options, more data, more customization, and most importantly authentication using firebase!
+
+
+## To run:
+Go to the folder where chatbot.py is saved on the command line
+then enter "python chatbot.py"
+Make sure you have flask installed !
+
+
