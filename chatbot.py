@@ -20,6 +20,7 @@ classes = pickle.load(open('classes.pkl', 'rb'))
 model = load_model('chatbotmodel.h5')
 
 goals = []
+completed_goals=[]
 initg = 2
 tagtofind = ""
 question = ""
@@ -27,7 +28,7 @@ resp = ""
 jsondict = {
   "tag": "Ford",
   "patterns": "Mustang",
-  "response": "1964"
+  "responses": "1964"
 }
 jsondict2 = {
   "user_name": "Ford",
@@ -91,16 +92,33 @@ def print_goals():
 
 
 def find_tag(tag):
+    global tagtofind
+    global question
+    global resp
+
     for intent in intents['intents']:
         if tag in intent["tag"]:
             intent["patterns"].append(question)
             intent["responses"].append(resp)
+            tagtofind = ""
+            question = ""
+            resp = ""
+            with open("intents.json", "w") as write_file:
+                json.dump(intents, write_file)
+            print("----------------TAG FOUND---------------")
             return
     
     jsondict['tag'] = tag
     jsondict['patterns'] = [question]
-    jsondict['response'] = [resp]
+    jsondict['responses'] = [resp]
+    tagtofind = ""
+    question = ""
+    resp = ""
+    print("----------------Append JSONNNNNNN---------------")
     intents['intents'].append(jsondict)
+    with open("intents.json", "w") as write_file:
+        json.dump(intents, write_file)
+
     return
 
 
@@ -112,37 +130,40 @@ def end_of_the_day():
 
 # initg 4 and 5
 def wrong_response(wrong_message):
-    global jsondict
+    #global jsondict2
     global initg
     global tagtofind
     global question
     global resp
     
 
-    if initg == 5 :
+    if initg == 5:
         if wrong_message.lower() == "right":
-            initg == 1
+            initg = 1
             return "Okay!"
 
         else:
 
             if "".__eq__(tagtofind):
                 tagtofind = wrong_message
-                #return "mmmh"
+                
+                return "What was your question?"
             
             elif "".__eq__(question):
-                jsondict2["message"] = "What was your question?"
-                socketio.emit('manabot response', jsondict2, callback=messageReceived)
                 question = wrong_message
-                #return "okay then"
+                # jsondict2["message"] = "What should I have answered to that?"
+                # socketio.emit('manabot response', jsondict2, callback=messageReceived)
+                return "What should I have answered to that?"
 
-            elif "".__eq__(question):
-                jsondict2["message"] = "What should I have answered to that?"
-                socketio.emit('manabot response', jsondict2, callback=messageReceived)
+            elif "".__eq__(resp):
                 resp = wrong_message
                 initg = 1
                 find_tag(tagtofind)
-                return "thanks!"
+                print(jsondict) #testingg
+                # jsondict2["message"] = "Thank you for letting me know!"
+                # socketio.emit('manabot response', jsondict2, callback=messageReceived)
+
+                return "Thank you for letting me know!"
 
     initg = 5
     jsondict2["message"] = "In which category would your question have fit in? If it fits in none, name a new category and I'll take it into account"
@@ -153,15 +174,25 @@ def wrong_response(wrong_message):
         jsondict2["message"] = tag
         socketio.emit('manabot response', jsondict2, callback=messageReceived)
 
+
        
 def action_per_intent(tag,message_in):
     
     print("tag is " + tag)
     if (tag=="goals"):
         print_goals()
+        return
     
     elif (tag=="wrong_answer"):
         wrong_response(message_in)
+        return
+
+    elif (tag=="goal_done"):
+        completed_goals.append(goals.pop(0))
+        for goal in completed_goals:
+            jsondict2["message"] = ("You completed: "+ goal)
+            socketio.emit('manabot response', jsondict2, callback=messageReceived)
+        return
 
 
 
