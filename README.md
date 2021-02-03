@@ -30,4 +30,4 @@ Go to the folder where chatbot.py is saved on the command line
 then enter "python chatbot.py"
 Make sure you have flask installed !
 
-![alt-text](taskfunction.png)
+![alt-text](Screen Shot 2021-02-01 at 9.55.32 PM.png)
