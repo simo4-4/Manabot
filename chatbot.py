@@ -263,17 +263,7 @@ if __name__ == '__main__':
 
 #end flask
 
-#print("GO! ManagementBot is running")
-#print("What are your goals for the day? Press ENTER after each goal and type DONE when you are done listing your goals!")
 
-
-# mess = ""
-# while True:
-#     print("Goal:")
-#     mess = input("")
-#     if (mess == "DONE"):
-#         break
-#     goals.append(mess)
 
 
 
